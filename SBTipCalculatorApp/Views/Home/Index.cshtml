@@ -1,0 +1,48 @@
+﻿@* This is a cshtml razor view controller file for View Folder.*@
+@*Using Razor Code block to to set the title for the page.*@
+@model SBTipCalculatorApp.Models.TipCalculatorModel
+@{
+    //Setting the Title Property of the ViewBag object to Future Value Calculator.
+    //Hence, the layout for the page gets this property and displays as a Title to the Client.
+
+    ViewBag.Title = "Tip Calculator";
+}
+
+<! DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home Page</title>
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Tip Calculator</h1>
+    <form asp-action="Index" method="post">
+        <!--View that displays the summary of Validation Messages-->
+        <div asp-validation-summary="All"></div>
+
+        <!--Below I have used asp-for tag helpers to access the properties from my Home Controller-->
+        <div>
+            <label asp-for="costOfMeal">Cost of Meal</label>
+            <input asp-for="costOfMeal" />
+        </div>
+        <div>
+            <label>15% Tip:</label>
+            <label> @ViewBag.FifteenPercentTip.ToString()</label>
+        </div>
+        <div>
+            <label>20% Tip:</label>
+            <label> @ViewBag.TwentyPercentTip.ToString()</label>
+        </div>
+        <div>
+            <label>25% Tip:</label>
+            <label> @ViewBag.TwentyFivePercentTip.ToString()</label>
+        </div>
+
+        <button type="submit">Calculate</button>
+        <!--The asp-acton tag helper takes the client back to the Index file for a fresh start to begin with entering data for a next session request-->
+        <a asp-action="Index">Clear</a>
+    </form>
+</body>
+</html>
